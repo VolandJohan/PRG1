@@ -1,0 +1,6 @@
+a. 4 * 3.14 * pow(r, 3)/3
+b. sqrt(fabs(x - y))	--> fabs pour avoir un résult flotant
+c. sqrt(pow(x, 2) + pow(y, 2))
+d. cos(3.14 / 4)
+e. pow(2.718, pow(-x, 2)) OU exp(-x*x)
+f. (i + j+ k) / 3

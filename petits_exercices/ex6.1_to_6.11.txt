@@ -1,0 +1,72 @@
+*** ex. 6.1 ***
+cout << (int)a
+int isalnum(a);
+int islower (a);
+int isdigit(a);
+int ispunct(a);
+
+*** ex 6.2 ***
+1.	|BC|
+2.	|C|
+3.	||
+4.	erreur à l'exécution (copie complètement en dehors du tableau)
+5.	|ABC|
+6.	|ABC|
+7.	erreur à l'exécution (indéfini)
+8.	|AAA|
+
+*** ex 6.3 ***
+1.	|C|
+2.	||
+3.	|AB|
+4.	|AA|
+5.	|AAAA|
+6.	|BBBB|
+7.	|ABC|
+8.	|ABC|
+9.	|ABC|
+10.	erreur de compilation
+11.	|ABC|
+12.	|123|
+13.	|23|
+14.	|12|
+15.	|22|
+
+*** ex 6.5 ***
+#1	str.empty();
+#2	str == "";
+#3	str.size() == 0;
+#4	str.length() == 0;
+
+*** ex 6.6 ***
+1.	|B|
+2.	erreur à la compilation
+3.	|B|
+4.	|\0|
+5.	indéterminé, plante
+6.	erreur à l'exécution, le at() vérifie
+7.	0
+8.	3
+9.	3
+10.	|ABC\0\0|
+11.	|AB|
+12.	|ABCx|
+13.	|BC|
+14.	|ABCDE|
+15.	|CDE|
+16.	|ABCDE|
+
+*** ex 6.11 ***
+1.	|A123BC|
+2.	erreur exécution
+3.	|AB23C|
+4.	|AB123C|
+5.	|ABC12|
+6.	|A33BC|
+7.	|A123DEF|
+8.	|AB123|
+9.	|A23DEF|
+10.	|AB12F|
+11.	||
+12.	|AB|
+13.	|ABEF|

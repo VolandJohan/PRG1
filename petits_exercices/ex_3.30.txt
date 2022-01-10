@@ -1,0 +1,21 @@
+1.a.	int i;
+		while (i < 10) {
+			cout << i++ << endl;
+		}
+		
+1.b.	int i;
+		do {
+			if (i < 10) {
+				cout << i++ << endl;
+			}
+		} while (i < 10);
+		
+2.a.	for (i--; i >= 10; i--) {
+			cout << i << endl;
+		}
+		
+2.b.	do {
+			if (i > 10) {
+				cout << --i << endl;
+			}
+		} while (i > 10);

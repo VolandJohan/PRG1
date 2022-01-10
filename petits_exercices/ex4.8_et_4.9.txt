@@ -1,0 +1,18 @@
+EX 4.8
+void permutation_circulaire_droite(double& n1, double& n2, double& n3){
+    double temp = n3;
+    n3 = n2;
+    n2 = n1;
+    n1 = temp;
+}
+
+EX 4.9
+unsigned int retrait (unsigned int& solde, unsigned int montantRetrait){
+	if (solde < montantRetrait){
+		montantRetrait = solde;
+	}
+
+		solde -= montantRetrait;
+	
+	return montantRetrait;
+}

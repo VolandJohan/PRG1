@@ -1,0 +1,19 @@
+-- EX 4.14 --
+
+1.	fonction 2 : bool -> int = 1
+2. 	fonction 1 : A
+3.	fonction 2 : short -> int = 1
+4. 	fonction 2 : 2
+5.	fonction 3 : 3.f
+6.	ambigüité double peut être converti en int ou en float
+						
+-- EX 4.15 --
+1.	ambigüité : 2 convertions possibles
+2.	ambigüité : 2 convertions possibles
+3. 	ambigüité : 2 convertions possibles
+4.	fonction 2 : char -> int
+5.	fonction 1 : char -> int
+6.	ambigüité : 2 convertions possibles
+7.	fonction 1 : double -> float
+8.	fonction 2 : double -> float
+9.	ambigüité

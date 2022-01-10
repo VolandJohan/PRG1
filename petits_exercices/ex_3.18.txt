@@ -1,0 +1,16 @@
+A : 5
+
+B : i = 6
+	j = 4	on applique le j puis on l'augmente
+
+C : i = 6
+	j = 3	on augmente le j puis on l'ajoute
+
+D :	i = 15
+	j = 6
+
+E : i = 21
+	j = 6
+
+F : i = 6
+	j = 1

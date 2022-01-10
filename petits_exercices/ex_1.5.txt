@@ -1,0 +1,28 @@
+Données :
+distance
+cout_billet
+consommation
+prix_essence
+amortissement
+
+Résultat : voiture ou train ?
+
+Calculs :
+prix_au_km = consommation*prix_essence/100 + amortissement
+cout_trajet = distance*prix_au_km
+
+Résultat :
+si cout_trajet >= cout_billet
+	--> train
+sinon
+	--> voiture
+	
+Vérification :
+distance = 78
+cout_billet = 13.90
+prix_essence = 1.80
+amortissement = 0.50
+consommation = 5
+
+prix_au_km = 5*1.8/100 + 0.5 = 0.59
+cout_trajet =

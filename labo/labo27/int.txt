@@ -1,0 +1,10 @@
+diviser le texte en blocs de 3 octets (8*3 = 24 bits)
+clé doit être > 2^24
+
+nombres premiers 7919 7907
+e = 62552200
+
+valeur1 + valeur2*256 valeur3*256
+
+valeur%256
+valeur/256

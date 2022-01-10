@@ -1,0 +1,14 @@
+#include <iostream>
+using namespace std;
+
+double volume_pyramide(double largeur, double longueur, double hauteur) {
+	return largeur * longueur * hauteur / 3.0;
+}
+
+int main(){
+	cout << "Entrez la longueur, la largeur et la hauteur de la pyramide : ";
+	double longueur, largeur, hauteur;
+	cin >> longueur >> largeur >> hauteur;
+	
+	cout << "Le volume de la pyramide est de " << volume_pyramide(largeur, longueur, hauteur) << endl;
+}

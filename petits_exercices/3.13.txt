@@ -1,0 +1,11 @@
+1.	non on doit écrire un cas à la fois
+2.	non on doit avoir une valeur constante
+3.	oui
+4.	non on peut mettre dans n'importe quel ordre
+5.	non mais on peut mettre une constante
+6.	non pas besoin
+7.	non la default est là pour ça
+8.	oui
+9.	non les cas doivent être uniques
+10.	non le switch aime que les valeurs énumérées pour les cas
+11.	oui

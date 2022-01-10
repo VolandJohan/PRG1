@@ -1,0 +1,19 @@
+Données :
+avoir_initial
+taux_annuel (absolu
+retrait
+
+Résultat : nbre_mois
+
+Calculs :
+taux_mensuel = pow(1+taux_annuel, 1/12)
+nbre_mois = 0
+avoir_courant = avoir_initial
+
+Répéter :
+	gain_du_mois = avoir_courant*taux_mensuel
+	avoir_courant = avoir_courant+gain_du_mois-retrait
+	nbre_mois = nbre_mois + 1
+tant que avoir_courant > 0
+
+afficher : le compteur est vide après nbre_mois

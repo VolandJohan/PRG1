@@ -1,0 +1,3 @@
+Non, l'égalité avec 100 n'est pas prise en compte de la même manière selon les codes.
+Dans le 1er, un prix de 100 donne une rédutcion de -10 alors que dans le 2ème, une prix de
+100 donne une réduction de -20.

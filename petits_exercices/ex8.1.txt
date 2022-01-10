@@ -1,0 +1,17 @@
+***** EX 8.1 *****
+1.	T = int, U = double
+	retour : int 7
+2.	T = double, U = int
+	retour : double 11.0
+3.	T = int, U = int
+	retour : int 6
+4.	T = int & double, U = int
+	retour : erreur
+5.	T = double, U = int
+	retour : double 7.5
+6.	T = int & double, U = double
+	retour : int 7
+7.	T = int, U = double
+	retour : int 9
+8.	T = double, U = double
+	retour : double 10
