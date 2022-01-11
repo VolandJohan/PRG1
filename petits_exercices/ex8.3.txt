@@ -1,0 +1,8 @@
+***** Ex 8.3 *****
+1.	Fonction V
+2.	Fonction IV
+3.	Fonction III
+4.	Fonction IV (conversion), V (conversion), I (type exact) <- meilleure option
+5.	Fonction IV ou II -> ambiguïté, les deux sont des correspondances exactes
+6.	Fonction VI (type exact)
+7.	Fonction II

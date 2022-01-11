@@ -9,7 +9,6 @@
 #include "Uint.hpp"
 
 #include <random>
-#include <functional>
 
 using namespace std;
 
@@ -110,21 +109,20 @@ bool testPrimalite(int nbre) {
  * @param nombre_de_chiffres Nombre de chiffre du nombre, entré préalablement par l'utilisateur.
  * @return Uint Nombre premier aléatoire.
  */
-int valeur_aleatoire (int nombre_de_chiffres) {
-    int nombre_aleatoire = bind(uniform_real_distribution<Uint>(1, 9999), mt19937(1));
-
-    return (int)nombre_aleatoire;
+Uint valeur_aleatoire (int nombre_de_chiffres) {
+    return rand() % nombre_de_chiffres;
 }
 
 int main() {
-    Uint nombre = 6234;
-    Uint diviseur = 67;
+    Uint nombre;
+    Uint diviseur;
 
     cout << "Entrez le nombre de chiffres des valeurs" << endl;
     int nombre_de_chiffres;
     cin >> nombre_de_chiffres;
 
     nombre = valeur_aleatoire(nombre_de_chiffres);
+    diviseur = valeur_aleatoire(nombre_de_chiffres);
 
     cout << nombre << " / " << diviseur << endl;
 
