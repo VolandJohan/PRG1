@@ -1,0 +1,20 @@
+***** Ex 8.4 *****
+- 1 -
+a.	fonction 4
+b.	fonction 2
+c.	fonction 4
+
+- 2 -
+a.	fonction 4
+b.	fonction 2
+c.	fonction 4
+
+- 3 -
+a.	fonction 3
+b.	fonction 2
+c.	ambigu
+
+- 4 -
+a.	fonction 1
+b.	fonction 2
+c.	ambigu

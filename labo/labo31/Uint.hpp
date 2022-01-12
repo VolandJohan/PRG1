@@ -11,9 +11,11 @@ private :
     string txt;
     uint64_t val;
 public :
+    /* Constructeurs. */
     Uint() {};
     Uint(const string valeur);
     Uint(const uint64_t valeur);
+    explicit operator uint64_t() { return (uint64_t) val; };
 
     /* Opérateurs arithmétiques. */
     Uint operator+=(const Uint& right);
@@ -49,13 +51,14 @@ public :
     friend bool operator==(const Uint& left, const Uint& right) { return left.val == right.val;}
     friend bool operator!=(const Uint& left, const Uint& right) {return !(left.val == right.val);}
 
+    /* Opérateurs de lecture/écriture */
     friend ostream& operator<<(ostream& os, const Uint& variable) {
         os << variable.val;
         return os;
     }
-
     friend istream& operator>>(istream& os, Uint& variable) {
         os >> variable.val;
+        is.clear(std::ios::badbit | is.rdstate());
         return os;
     }
 
@@ -71,10 +74,12 @@ public :
         return tmp;
     }
 
-    /****** Fonctions spéciales ******/
+    /* Fonctions spéciales */
     Uint division_entiere(Uint diviseur);
     Uint reste(Uint diviseur);
-    Uint mod_pow(Uint base, Uint exponentiel, Uint modulo);
 };
+
+// exponetielle modulaire
+Uint mod_pow(Uint base, Uint exponentiel, Uint modulo);
 
 #endif

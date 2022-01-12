@@ -101,11 +101,13 @@ void lire_cle(const string& nom_fichier_cle, Uint& m, Uint& e)
 {
   fstream fichier;
   fichier.open(nom_fichier_cle, ios::in);
+  cout << "fichier ouvert" << endl; // pour des tests
   fichier >> m >> e;
+  cout << "info copiees : " << "m = " << m << endl << "e = " << e << endl;  // pour des tests
   if (!fichier.good())
   {
     fichier.close();
-    throw Erreur_fichier(nom_fichier_cle + ": fichier de cle incorrect\n");
+    throw Erreur_fichier(nom_fichier_cle + ": fichier de cle incorrect\n"); // s'active à case de badbit -> check la donnée
   }
   fichier.close();
 }
@@ -151,7 +153,7 @@ void crypte(const string& nom_cle, const string& nom_in, const string& nom_out)
     throw Erreur_fichier(nom_out + ": pas ouvrable en ecriture\n");
 
   // Écriture de la taille du fichier d'origine
-  fichier << mod_pow(in.length(), e, n) << endl; // Johan regarde la compilation séparée (dans chap. 2)
+  fichier << mod_pow(in.length(), e, n) << endl;
 
   // Bourrage des données d'origine pour arriver à une taille multiple d'un bloc
   while (in.length() % taille_bloc != 0)

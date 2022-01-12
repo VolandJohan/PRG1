@@ -33,7 +33,7 @@ Uint Uint::operator/=(const Uint& right) {
     return *this;
 }
 
-/****** Opérateurs spéciaux ******/
+/* Opérateurs spéciaux */
 Uint Uint::division_entiere(Uint diviseur) {
     Uint puissance2 = 1;
     Uint b = diviseur;
@@ -78,7 +78,7 @@ Uint Uint::reste(Uint diviseur) {
     return reste;
 }
 
-Uint expModulaire (Uint base, Uint exponentiel, Uint modulo){
+Uint mod_pow (Uint base, Uint exponentiel, Uint modulo){
     Uint result = 1;
     while (exponentiel > 0) {
         if (exponentiel % 2 == 0) {
