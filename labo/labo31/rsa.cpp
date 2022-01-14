@@ -101,15 +101,15 @@ void lire_cle(const string& nom_fichier_cle, Uint& m, Uint& e)
 {
   fstream fichier;
   fichier.open(nom_fichier_cle, ios::in);
-  cout << "fichier ouvert" << endl; // pour des tests
-  fichier >> m >> e;
-  cout << "info copiees : " << "m = " << m << endl << "e = " << e << endl;  // pour des tests
+  fichier >> m >> e;  // /!\ Il faut mettre une espace à la fin du fichier sinon erreur.
   if (!fichier.good())
   {
     fichier.close();
-    throw Erreur_fichier(nom_fichier_cle + ": fichier de cle incorrect\n"); // s'active à case de badbit -> check la donnée
+    cout << "info copiees : " << "n = " << m << endl << "e = " << e << endl;  // pour des tests
+    throw Erreur_fichier(nom_fichier_cle + ": fichier de cle incorrect\n");
   }
   fichier.close();
+  cout << "info copiees : " << "n = " << m << endl << "e = " << e << endl;  // pour des tests
 }
 
 string lire_donnees(const string& nom_in)

@@ -56,10 +56,9 @@ public :
         os << variable.val;
         return os;
     }
-    friend istream& operator>>(istream& os, Uint& variable) {
-        os >> variable.val;
-        is.clear(std::ios::badbit | is.rdstate());
-        return os;
+    friend istream& operator>>(istream& is, Uint& variable) {
+        is >> variable.val;
+        return is;
     }
 
     // opérateur préfixe

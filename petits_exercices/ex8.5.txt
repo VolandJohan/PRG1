@@ -1,0 +1,11 @@
+***** Ex 8.5 *****
+1.	correct
+2.	correct
+3.	incorrect (n n'est pas une constante)
+4.	correct
+5.	correct
+6.	incorrect (pas de conversion possible pour les paramètres expression)
+7.	correct
+8.	correct
+9.	incorrect (manque le <> après le A)
+10.	correct
