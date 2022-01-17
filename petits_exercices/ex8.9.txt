@@ -1,0 +1,5 @@
+***** Ex 8.9 *****
+template <>
+void C<int*>::afficher() const {
+	cout << *t;
+}

@@ -11,13 +11,13 @@ private :
     string txt;
     uint64_t val;
 public :
-    /* Constructeurs. */
+    /* constructeur */
     Uint() {};
     Uint(const string valeur);
     Uint(const uint64_t valeur);
     explicit operator uint64_t() { return (uint64_t) val; };
 
-    /* Opérateurs arithmétiques. */
+    /* opérateurs arithmétiques */
     Uint operator+=(const Uint& right);
     friend Uint operator+(Uint left, const Uint& right) {
         left += right;
@@ -42,7 +42,7 @@ public :
         return left.reste(right);
     }
 
-    /* Opérateurs logiques. */
+    /* opérateurs logiques */
     friend bool operator<(const Uint& left, const Uint& right) {return left.val < right.val;}
     friend bool operator>(const Uint& left, const Uint& right) {return right.val < left.val;}
     friend bool operator<=(const Uint& left, const Uint& right) {return !(right.val < left.val);}
@@ -51,7 +51,7 @@ public :
     friend bool operator==(const Uint& left, const Uint& right) { return left.val == right.val;}
     friend bool operator!=(const Uint& left, const Uint& right) {return !(left.val == right.val);}
 
-    /* Opérateurs de lecture/écriture */
+    /* opérateurs de lecture/écriture */
     friend ostream& operator<<(ostream& os, const Uint& variable) {
         os << variable.val;
         return os;
@@ -59,6 +59,10 @@ public :
     friend istream& operator>>(istream& is, Uint& variable) {
         is >> variable.val;
         return is;
+    }
+    friend istream& operator>>(fstream& fs, Uint& variable) {
+        fs >> variable.val;
+        return fs;
     }
 
     // opérateur préfixe
@@ -73,7 +77,7 @@ public :
         return tmp;
     }
 
-    /* Fonctions spéciales */
+    /* fonctions spéciales */
     Uint division_entiere(Uint diviseur);
     Uint reste(Uint diviseur);
 };

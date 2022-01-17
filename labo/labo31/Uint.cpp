@@ -3,7 +3,7 @@
 
 using namespace std;
 
-/* Constructeurs. */
+/* constructeurs */
 Uint::Uint(string valeur) {
     txt = valeur;
     val = stoull(txt);
@@ -12,7 +12,7 @@ Uint::Uint(uint64_t valeur) {
     val = valeur;
 }
 
-/* Opérateurs arithmétiques. */
+/* opérateurs arithmétiques */
 Uint Uint::operator+=(const Uint& right) {
     val += right.val;
     return *this;
@@ -33,7 +33,8 @@ Uint Uint::operator/=(const Uint& right) {
     return *this;
 }
 
-/* Opérateurs spéciaux */
+/* opérateurs spéciaux */
+
 Uint Uint::division_entiere(Uint diviseur) {
     Uint puissance2 = 1;
     Uint b = diviseur;
