@@ -2,45 +2,47 @@
 #define UINT_HPP
 
 #include <string>
-#include <iostream>
+#include <vector>
 
-using namespace std;
+using std::string;
+using std::vector;
 
 class Uint {
 private :
-    string txt;
-    uint64_t val;
+    vector<uint_fast32_t> val;
+
+    friend class Sint;
+
+    /* fonctions spéciales */
+    void petite_division(const uint_fast32_t &diviseur);
+    Uint division_entiere(const Uint &diviseur);
+    Uint reste(const Uint &diviseur);
+    friend Uint mod_pow(Uint base, Uint exponentiel, const Uint &modulo);
+    void gerer_zeros();
+
 public :
     /* constructeur */
-    Uint() {};
-    Uint(const string valeur);
-    Uint(const uint64_t valeur);
-    explicit operator uint64_t() { return (uint64_t) val; };
+    Uint();
+    Uint(const string &val);
+    Uint(const uint64_t &val);
+    Uint(const Uint &val);
+    Uint(const vector<uint_fast32_t> &val);
+
+    Uint &operator=(const Uint &right);
+    Uint &operator=(const uint_fast32_t &right);
+    Uint &operator=(const string &right);
 
     /* opérateurs arithmétiques */
-    Uint operator+=(const Uint& right);
-    friend Uint operator+(Uint left, const Uint& right) {
-        left += right;
-        return left;
-    }
-    Uint operator*=(const Uint& right);
-    friend Uint operator*(Uint left, const Uint& right) {
-        left *= right;
-        return left;
-    }
-    Uint operator-=(const Uint& right);
-    friend Uint operator-(Uint left, const Uint& right) {
-        left -= right;
-        return left;
-    }
-    Uint operator/=(const Uint& right);
-    friend Uint operator/(Uint left, const Uint& right) {
-        left /= right;
-        return left;
-    }
-    friend Uint operator%(Uint left, const Uint& right) {
-        return left.reste(right);
-    }
+    Uint &operator+=(const Uint &right);
+    Uint &operator-=(const Uint &right);
+    Uint &operator*=(const Uint &right);
+    Uint &operator/=(const Uint &right);
+    Uint &operator%=(const Uint &right);
+    friend Uint operator+(Uint left, const Uint &right) { return left += right; }
+    friend Uint operator-(Uint left, const Uint &right) { return left -= right; }
+    friend Uint operator*(Uint left, const Uint &right) { return left *= right; }
+    friend Uint operator/(Uint left, const Uint &right) { return left /= right; }
+    friend Uint operator%(Uint left, const Uint &right) { return left %= right; }
 
     /* opérateurs logiques */
     friend bool operator<(const Uint& left, const Uint& right) {return left.val < right.val;}
@@ -52,37 +54,49 @@ public :
     friend bool operator!=(const Uint& left, const Uint& right) {return !(left.val == right.val);}
 
     /* opérateurs de lecture/écriture */
-    friend ostream& operator<<(ostream& os, const Uint& variable) {
-        os << variable.val;
+    friend std::ostream &operator<<(std::ostream &os, const Uint &variable) {
+        os << variable.str();
         return os;
     }
-    friend istream& operator>>(istream& is, Uint& variable) {
-        is >> variable.val;
+    friend std::istream &operator>>(std::istream &is, Uint &variable) {
+        std::string temp;
+        if (is >> temp) {
+            variable = Uint(temp);
+        } else {
+            is.clear(std::ios::badbit | is.rdstate());
+        }
         return is;
     }
-    friend istream& operator>>(fstream& fs, Uint& variable) {
-        fs >> variable.val;
-        return fs;
-    }
 
+    /* opérateurs d'incrémentation */
     // opérateur préfixe
-    Uint& operator++() {
-        ++val;
+    Uint &operator++() {
+        *this += 1;
         return *this;
     }
     // opérateur postfixe
     Uint operator++(int) {
         Uint tmp = *this;
-        ++(*this);
+        ++tmp;
+        return tmp;
+    }
+    Uint &operator--() {
+        *this -= 1;
+        return *this;
+    }
+    Uint operator--(int) {
+        Uint tmp = *this;
+        --tmp;
         return tmp;
     }
 
-    /* fonctions spéciales */
-    Uint division_entiere(Uint diviseur);
-    Uint reste(Uint diviseur);
-};
+    /* conversions */
+    explicit operator uint64_t() const;
 
-// exponetielle modulaire
-Uint mod_pow(Uint base, Uint exponentiel, Uint modulo);
+    string str() const;
+    size_t size() const;
+    bool nombre_premier() const;
+    void randomize(const size_t &size);
+};
 
 #endif

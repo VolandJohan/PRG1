@@ -195,6 +195,7 @@ void decrypte(const string& nom_cle, const string& nom_in, const string& nom_out
   string bloc(taille_bloc, '\0'),
          out; // Données décryptées
          
+  
   cout << "Decryptage:\n";
   for (size_t i = 0; i < taille_fichier; i += taille_bloc)
   {
@@ -203,6 +204,7 @@ void decrypte(const string& nom_cle, const string& nom_in, const string& nom_out
       fichier.close();
       throw Erreur_fichier(nom_in + ": corrompu ou mauvaise cle\n");
     }
+
     m = mod_pow(c, d, n);
     for (size_t j = 0; j < taille_bloc; ++j)
     {
