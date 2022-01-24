@@ -1,0 +1,17 @@
+***** Ex 9.1 *****
+Dans catch(int) : valeur reçue = 1
+
+***** Ex 9.2 *****
+Dans catch(int) : valeur reçue = 1
+Dans catch(double e) : valeur reçue = 2.0
+fin du programme
+
+***** Ex 9.3 *****
+dans catch (...) 1
+dans catch (int&)
+fin du programme
+
+***** Ex 9.4 *****
+std::exception
+out of range
+fin de programme

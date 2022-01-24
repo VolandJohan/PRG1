@@ -1,0 +1,63 @@
+***** Ex 9.14 *****
+avec 1 :	Donnez un entier :
+			debut du premier bloc try
+			fin du premier bloc try
+			catch 1 : n = 1
+			... suite du programme
+			debut du second bloc try
+			catch 2 : n = 1
+			fin du programme
+			Appel de exit
+			.....
+
+avec 0 :	Donnez un entier :
+			debut du premier bloc try
+			fin du premier bloc try
+			... suite du programme
+			debut du second bloc try
+			catch 2 : n = 0
+			fin du programme
+			Appel de exit
+			......
+			
+avec 2 :	Donnez un entier :
+			du debut du premier bloc try
+			fin du premier bloc try
+			Appel de exit
+			........
+			
+***** Ex 9.15 *****
+valeur 1 :	Donnez un entier :
+			catch (int n) : n = 1
+			fin du programme
+			Appel de exit
+			.....
+			
+valeur 2 :	Donnez un entier :
+			catch (float x) : x = 2
+			Appel de exit
+			......
+			
+valeur 3 :	Donnez un entier :
+			Appel de terminate
+			[Message d'erreur pas très clair]
+			
+valeur 4 :	Donnez un entier
+			fin du programme
+			Appel de exit
+			......
+			
+***** Ex 9.16 *****
+- Partie 1 -
+Exception int dans f : 1
+Exception int dans main : 1
+Fin main
+
+- Partie 2 -
+Exception autre que int dans main
+Fin main
+
+- troisièmme question -
+donnée : void f() noexept { throw 1; }
+
+terminate called after an instance of 'int' (ou un truc du genre)
