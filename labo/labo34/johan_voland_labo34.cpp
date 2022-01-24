@@ -5,20 +5,31 @@ using Uint = uintmax_t;
 using namespace std;
 
 int main() {
-    Uint nbre1, nbre2, nbre3, nbre4;
-    nbre1 = 3;
+    /* variables */
+    Uint nbre3, nbre2, nbre25, nbre5;
+    nbre3 = 3;
     nbre2 = 2;
-    nbre3 = 25;
-    nbre4 = 5;
+    nbre25 = 25;
+    nbre5 = 5;
     bool signe = true;
 
-    Rationnel nombre1(nbre1, nbre2);
+    /* création des nombres */
+    /*Rationnel nombre1(nbre1, nbre2);
     Rationnel nombre2(nbre2, nbre1, signe);
     Rationnel nombre3();
-    Rationnel nombre4(nbre3, nbre4);
+    Rationnel nombre4(nbre3, nbre4);*/
 
+    /* calculs */
+    Rationnel nombre1(nbre3, nbre2);
+    Rationnel nombre2(nbre5, nbre2, signe);
+
+    nombre1 -= nombre2;
+    cout << nombre1 << endl;
+
+    /* affichage */
+    /*cout << "***** Affichage simple *****" << endl;
     cout << "Nombre 1 : " << nombre1 << endl;
     cout << "Nombre 2 : " << nombre2 << endl;
     cout << "Nombre 3 : " << nombre3 << endl;
-    cout << "Nombre 4 : " << nombre4 << endl;
+    cout << "Nombre 4 : " << nombre4 << endl;*/
 }

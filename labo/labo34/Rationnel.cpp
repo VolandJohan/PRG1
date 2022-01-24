@@ -27,7 +27,7 @@ Rationnel::Rationnel(Uint& num, Uint& denom, bool& neg) {
 }
 
 /* opérateurs arithmétiques */
-/*Rationnel operator+=(const Rationnel& right);
+/*
 Rationnel operator-=(const Rationnel& right);    
 Rationnel operator*=(const Rationnel& right);
 Rationnel operator/=(const Rationnel& right);
@@ -45,32 +45,56 @@ Rationnel Rationnel::operator+=(Rationnel& right) {
         denominateur *= right.denominateur;
     }
 
-    /* test du signe & calcul */
-    // si les valeurs ont le même signe
-    if (negatif == right.negatif) {}
-
-    // gestion du signe de right
-    if (right.negatif == true) {
-        // tester si -right est supérieur à *this
-        if (right.numerateur > numerateur) {
+    // tester si l'un des nombres à un signe
+    if (negatif != right.negatif) { // si les signes sont différents ...
+        // tester quel numérateur est supérieur
+        if (numerateur < right.numerateur) {
+            negatif = !(negatif);
             numerateur = right.numerateur - numerateur;
-            negatif = true;
         } else {
             numerateur -= right.numerateur;
-        }        
-    } else {
+        }
+    } else { // si les signes sont identiques, on fait une simple addition
         numerateur += right.numerateur;
     }
-    // gestion du signe du nombre de base
-    if (negatif == true) {
-        // tester si nombre de base est supérieur à right
-        if (numerateur > right.numerateur) {
+
+    pgdc();
+    return *this;
+}
+
+Rationnel Rationnel::operator-=(Rationnel& right) {
+    /* test du dénominateur */
+    if (denominateur != right.denominateur) {
+        // multiplier les numérateurs avec les dénominateurs
+        numerateur *= right.denominateur;
+        right.numerateur *= denominateur;
+        // multiplier les dénominateurs entre eux
+        denominateur *= right.denominateur;
+    }
+
+    /* calculs en fonction de qui est négatif */
+    if (numerateur == right.numerateur) {
+        numerateur = 0;
+        negatif = false;
+    } else if (numerateur > right.numerateur) {
+        if (negatif && right.negatif) {
+            numerateur -= right.numerateur;
+        } else if (negatif==false && right.negatif==false) {
             numerateur -= right.numerateur;
         } else {
-            negatif = false;
+            numerateur += right.numerateur;
+        }
+    } else {
+        if (right.negatif && negatif == false) {
+            numerateur += right.numerateur;
+        } else {
             numerateur = right.numerateur - numerateur;
+            negatif = !(negatif);
         }
     }
+
+    pgdc();
+    return *this;
 }
 
 // opérateur de lecture
@@ -103,4 +127,8 @@ void Rationnel::pgdc() {
     // application du PGDC
     numerateur /= nb1;
     denominateur /= nb1;
+    if (numerateur == denominateur) {
+        numerateur = 1;
+        denominateur = 1;
+    }
 }

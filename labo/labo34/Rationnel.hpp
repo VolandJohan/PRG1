@@ -18,7 +18,7 @@ class Rationnel {
 
     /* opérateurs arithmétiques */
     Rationnel operator+=(Rationnel& right);
-    Rationnel operator-=(const Rationnel& right);    
+    Rationnel operator-=(Rationnel& right);    
     Rationnel operator*=(const Rationnel& right);
     Rationnel operator/=(const Rationnel& right);
     friend Rationnel operator+(Rationnel left, const Rationnel& right);
