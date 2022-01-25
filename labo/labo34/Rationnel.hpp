@@ -13,12 +13,12 @@ class Rationnel {
  public :
     /* constructeurs */
     Rationnel();
-    Rationnel(Uint& num, Uint& denom);
-    Rationnel(Uint& num, Uint& denom, bool& neg);
+    Rationnel(const Uint &num, const Uint &denom);
+    Rationnel(const Uint &num, const Uint &denom, const bool &neg);
 
     /* opérateurs arithmétiques */
-    Rationnel operator+=(Rationnel& right);
-    Rationnel operator-=(Rationnel& right);    
+    Rationnel operator+=(const Rationnel& right);
+    Rationnel operator-=(const Rationnel& right);    
     Rationnel operator*=(const Rationnel& right);
     Rationnel operator/=(const Rationnel& right);
     friend Rationnel operator+(Rationnel left, const Rationnel& right);
