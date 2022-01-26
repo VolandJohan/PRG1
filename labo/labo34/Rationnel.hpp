@@ -25,6 +25,8 @@ class Rationnel {
     friend Rationnel operator-(Rationnel left, const Rationnel& right);
     friend Rationnel operator*(Rationnel left, const Rationnel& right);
     friend Rationnel operator/(Rationnel left, const Rationnel& right);
+    Rationnel operator=(const Rationnel& right);
+    Rationnel operator-();
 
     /* opérateurs d'incrémentation */
     Rationnel &operator++();
@@ -40,6 +42,7 @@ class Rationnel {
     friend bool operator==(const Rationnel& left, const Rationnel& right);
     friend bool operator!=(const Rationnel& left, const Rationnel& right);
 
-    // operateur de lecture
+    /* opérateurs de lecture/écriture */
     friend std::ostream& operator<<(std::ostream& os, const Rationnel& val);
+    friend std::istream& operator>>(std::istream& is, Rationnel& val);
 };

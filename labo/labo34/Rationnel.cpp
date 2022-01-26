@@ -6,8 +6,8 @@ using Uint = uintmax_t;
 /* constructeurs */
 Rationnel::Rationnel() {
     negatif = false;
-    numerateur = Uint();
-    denominateur = Uint();
+    numerateur = Uint(0);
+    denominateur = Uint(0);
 }
 Rationnel::Rationnel(const Uint &num, const Uint &denom) {
     negatif = false;
@@ -134,6 +134,17 @@ Rationnel operator-(Rationnel left, const Rationnel& right) { return left -= rig
 Rationnel operator*(Rationnel left, const Rationnel& right) { return left *= right; }
 Rationnel operator/(Rationnel left, const Rationnel& right) { return left /= right; }
 
+Rationnel Rationnel::operator=(const Rationnel& right) {
+    numerateur = right.numerateur;
+    denominateur = right.denominateur;
+    negatif = right.negatif;
+    return *this;
+}
+Rationnel Rationnel::operator-() {
+    negatif = !(negatif);
+    return *this;
+}
+
 /* opérateurs d'incrémentation */
 Rationnel &Rationnel::operator++() {
     Rationnel temp(1, 1);
@@ -157,11 +168,6 @@ Rationnel Rationnel::operator--(int) {
 }
 
 /* opérateurs booléens */
-/*
-friend bool operator<=(const Rationnel& left, const Rationnel& right);
-friend bool operator>=(const Rationnel& left, const Rationnel& right);
-friend bool operator==(const Rationnel& left, const Rationnel& right);
-friend bool operator!=(const Rationnel& left, const Rationnel& right);*/
 bool operator<(const Rationnel& left, const Rationnel& right) {
     Uint num1 = left.numerateur;
     Uint num2 = right.numerateur;
@@ -194,15 +200,29 @@ bool operator>=(const Rationnel& left, const Rationnel& right) {
 
     return !(num1 * denum2 < num2 * denum1);
 }
+bool operator==(const Rationnel& left, const Rationnel& right) {
+    return  left.numerateur == right.numerateur 
+            && left.denominateur == right.denominateur 
+            && left.negatif == right.negatif;
+}
+bool operator!=(const Rationnel& left, const Rationnel& right) {
+    return  !(left.numerateur == right.numerateur 
+            && left.denominateur == right.denominateur 
+            && left.negatif == right.negatif);
+}
 
-// opérateur de lecture
+/* opérateurs de lecture/écriture */
 std::ostream& operator<<(std::ostream& os, const Rationnel& val) {
     if (val.negatif) {
         os << '-';
     }
-    
     os << val.numerateur << '/' << val.denominateur;
     return os;
+}
+std::istream& operator>>(std::istream& is, Rationnel& val) {
+    is >> val.numerateur >> val.denominateur >> val.negatif;
+    val.pgdc();
+    return is;
 }
 
 /**

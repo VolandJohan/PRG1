@@ -1,42 +1,113 @@
+/*
+    File :      johan_voland_labo33.cpp
+    Brief :     Même donnée que le labo33 mais en utilisant une classe "Rationnel".
+    Author :    Johan Voland
+    Date :      26.01.2021
+*/
+
 #include <iostream>
+#include <vector>
+#include <iomanip>
 #include "Rationnel.hpp"
 using Uint = uintmax_t;
 
 using namespace std;
 
-int main() {
-    /* variables */
-    /*Uint nbre3, nbre2, nbre25, nbre5;
-    nbre3 = 3;
-    nbre2 = 2;
-    nbre25 = 25;
-    nbre5 = 5;
-    bool signe = true;*/
+template <typename T>
+class Matrice {
+ private :
+    vector<vector<T>> matrice;
+ public :
+    // constructeur
+    Matrice(size_t nb_lignes, size_t nb_colonnes);
+    
+    /* fonctions diverses */
+    void afficher(size_t nb_lignes, size_t nb_colonnes) const;
+    void pivot(size_t ligne, size_t colonne, size_t nb_lignes, size_t nb_colonnes);
+};
 
-    /* création des nombres */
-    /*Rationnel nombre1(nbre1, nbre2);
-    Rationnel nombre2(nbre2, nbre1, signe);
-    Rationnel nombre3();
-    Rationnel nombre4(nbre3, nbre4);*/
-
-    /* calculs */
-    /*Rationnel nombre1(1, 2);
-    Rationnel nombre2(nbre5, nbre2, signe);
-
-    nombre1 -= nombre2;
-    cout << nombre1 << endl;*/
-
-    /* affichage */
-    /*cout << "***** Affichage simple *****" << endl;
-    cout << "Nombre 1 : " << nombre1 << endl;
-    cout << "Nombre 2 : " << nombre2 << endl;
-    cout << "Nombre 3 : " << nombre3 << endl;
-    cout << "Nombre 4 : " << nombre4 << endl;*/
-
-    /* booléens */
-    Rationnel nbre1(1, 2);
-    Rationnel nbre2(3, 5);
-    if (nbre1 < nbre2) {
-        cout << "nbre1 est plus petit" << endl;
+/* constructeur */
+template <typename T>
+Matrice<T>::Matrice(size_t nb_lignes, size_t nb_colonnes) {
+    /* redimensionnement de la matrice */
+    matrice.resize(nb_lignes);
+    for (size_t i = 0; i < matrice.size(); ++i) {
+        matrice[i].resize(nb_colonnes);
     }
+
+    for (size_t i = 0; i < nb_lignes; ++i) {
+        for (size_t j = 0; j < nb_colonnes; ++j) {
+            cout << "Introduisez l'element en " << i << "X" << j << endl;
+            cin >> matrice.at(i).at(j);
+        }
+    }
+}
+
+/**
+ * @brief Affiche le contenu de la matrice
+ * 
+ * @param nb_lignes Nombre de lignes de la matrice
+ * @param nb_colonnes Nombre de colonne de la matrice
+ */
+template <typename T>
+void Matrice<T>::afficher(size_t nb_lignes, size_t nb_colonnes) const {
+    cout << "--------------------------------------------" << endl;
+    for (size_t i = 0; i < nb_lignes; ++i) {
+        for (size_t j = 0; j < nb_colonnes; ++j) {
+            cout << scientific << matrice.at(i).at(j) << " ";
+        }
+        cout << endl;
+    }
+    cout << "--------------------------------------------" << endl;
+}
+
+/**
+ * @brief Opération de pivotage, adaptation de la fonction de "pivote3_4.cpp"
+ * 
+ * @param ligne "ID" de la ligne de la matrice
+ * @param colonne "ID" de la colonne de la matrice
+ * @param nb_lignes Nombre de lignes de la matrice
+ * @param nb_colonnes Nombre de colonne de la matrice
+ */
+template <typename T>
+void Matrice<T>::pivot(size_t ligne, size_t colonne, size_t nb_lignes, size_t nb_colonnes) {
+    for(size_t i = 0; i < nb_lignes; ++i) {
+        if (i != ligne) {
+            for (size_t j = 0; j < nb_colonnes; ++j) {
+                if (j != colonne) {
+                    matrice.at(i).at(j) = matrice.at(i).at(j) - matrice.at(i).at(colonne) * matrice.at(ligne).at(j) / matrice.at(ligne).at(colonne);
+                }
+            }
+        }
+    }
+    for (size_t i = 0; i < nb_lignes; ++i) {
+        if (i != ligne) {
+            matrice.at(i).at(colonne) = -matrice.at(i).at(colonne) / matrice.at(ligne).at(colonne);
+        }
+    }
+    for (size_t j = 0; j < nb_colonnes; ++j) {
+        if (j != colonne) {
+            matrice.at(ligne).at(j) = matrice.at(ligne).at(j) / matrice.at(ligne).at(colonne);
+        }
+    }
+    matrice.at(ligne).at(colonne) = T(1.0) / matrice.at(ligne).at(colonne);    // C'EST ICI QU'IL Y A UN PROBLEME
+}
+
+int main() {
+    /* entrée du nombre de lignes et colonnes */
+    size_t nb_lignes, nb_colonnes;
+    cout << "Entrez le nombre de lignes et de colonnes : ";
+    cin >> nb_lignes >> nb_colonnes;
+
+    /* création de la matrice */
+    Matrice<Rationnel> matrice(nb_lignes, nb_colonnes);
+    cout << "Avant pivot : " << endl;
+    matrice.afficher(nb_lignes, nb_colonnes);
+
+    /* pivot */
+    for (size_t i = 0; i < nb_lignes; ++i) {
+        matrice.pivot(i, i, nb_lignes, nb_colonnes);
+    }
+    cout << "Apres pivot : " << endl;
+    matrice.afficher(nb_lignes, nb_colonnes);
 }
