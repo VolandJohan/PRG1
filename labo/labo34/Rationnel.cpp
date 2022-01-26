@@ -9,6 +9,11 @@ Rationnel::Rationnel() {
     numerateur = Uint(0);
     denominateur = Uint(0);
 }
+Rationnel::Rationnel(const Uint &num) {
+    negatif = false;
+    numerateur = num;
+    denominateur = Uint(1);
+}
 Rationnel::Rationnel(const Uint &num, const Uint &denom) {
     negatif = false;
     numerateur = num;
@@ -73,24 +78,24 @@ Rationnel Rationnel::operator-=( const Rationnel& right) {
     }
 
     /* calculs en fonction de qui est négatif */
-    if (numerateur == num_temp) {
-        numerateur = 0;
-        negatif = false;
-    } else if (numerateur > num_temp) {
-        if (negatif && neg_temp) {
+
+    if (numerateur > num_temp) {
+        if (negatif == false && neg_temp == false || negatif == true && neg_temp == true) {
             numerateur -= num_temp;
-        } else if (negatif==false && neg_temp==false) {
-            numerateur -= num_temp;
+        } else {
+            numerateur += num_temp;
+        }
+    } else if (numerateur < num_temp) {
+        if (negatif == false && neg_temp == false || negatif == true && neg_temp == true) {
+            numerateur = num_temp - numerateur;
+            negatif = !(negatif);
         } else {
             numerateur += num_temp;
         }
     } else {
-        if (neg_temp && negatif == false) {
-            numerateur += num_temp;
-        } else {
-            numerateur = num_temp - numerateur;
-            negatif = !(negatif);
-        }
+        negatif = false;
+        numerateur = 0;
+        denominateur = 0;
     }
 
     pgdc();

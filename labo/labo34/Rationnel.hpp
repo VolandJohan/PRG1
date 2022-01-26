@@ -13,6 +13,7 @@ class Rationnel {
  public :
     /* constructeurs */
     Rationnel();
+    Rationnel(const Uint &num);
     Rationnel(const Uint &num, const Uint &denom);
     Rationnel(const Uint &num, const Uint &denom, const bool &neg);
 

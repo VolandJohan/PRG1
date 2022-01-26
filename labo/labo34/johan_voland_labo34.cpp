@@ -80,6 +80,7 @@ void Matrice<T>::pivot(size_t ligne, size_t colonne, size_t nb_lignes, size_t nb
             }
         }
     }
+
     for (size_t i = 0; i < nb_lignes; ++i) {
         if (i != ligne) {
             matrice.at(i).at(colonne) = -matrice.at(i).at(colonne) / matrice.at(ligne).at(colonne);
@@ -90,7 +91,8 @@ void Matrice<T>::pivot(size_t ligne, size_t colonne, size_t nb_lignes, size_t nb
             matrice.at(ligne).at(j) = matrice.at(ligne).at(j) / matrice.at(ligne).at(colonne);
         }
     }
-    matrice.at(ligne).at(colonne) = T(1.0) / matrice.at(ligne).at(colonne);    // C'EST ICI QU'IL Y A UN PROBLEME
+    T nbre = 1;
+    matrice.at(ligne).at(colonne) = nbre / matrice.at(ligne).at(colonne);
 }
 
 int main() {
