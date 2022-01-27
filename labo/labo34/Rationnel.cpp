@@ -139,12 +139,6 @@ Rationnel operator-(Rationnel left, const Rationnel& right) { return left -= rig
 Rationnel operator*(Rationnel left, const Rationnel& right) { return left *= right; }
 Rationnel operator/(Rationnel left, const Rationnel& right) { return left /= right; }
 
-Rationnel Rationnel::operator=(const Rationnel& right) {
-    numerateur = right.numerateur;
-    denominateur = right.denominateur;
-    negatif = right.negatif;
-    return *this;
-}
 Rationnel Rationnel::operator-() {
     negatif = !(negatif);
     return *this;

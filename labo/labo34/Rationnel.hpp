@@ -1,5 +1,5 @@
-#include <cstdint>  // pour le uintmax_t
-#include <string>   // pour l'opérateur <<
+#include <cstdint>
+#include <string>
 
 using Uint = uintmax_t;
 
@@ -26,7 +26,6 @@ class Rationnel {
     friend Rationnel operator-(Rationnel left, const Rationnel& right);
     friend Rationnel operator*(Rationnel left, const Rationnel& right);
     friend Rationnel operator/(Rationnel left, const Rationnel& right);
-    Rationnel operator=(const Rationnel& right);
     Rationnel operator-();
 
     /* opérateurs d'incrémentation */
