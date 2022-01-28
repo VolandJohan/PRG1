@@ -1,5 +1,5 @@
 /*
-    File :      johan_voland_labo33.cpp
+    File :      johan_voland_labo34.cpp
     Brief :     Même donnée que le labo33 mais en utilisant une classe "Rationnel".
     Author :    Johan Voland
     Date :      26.01.2021
@@ -15,7 +15,6 @@ using namespace std;
 
 template <typename T>
 class Matrice {
- private :
     vector<vector<T>> matrice;
  public :
     // constructeur
@@ -26,7 +25,13 @@ class Matrice {
     void pivot(size_t ligne, size_t colonne, size_t nb_lignes, size_t nb_colonnes);
 };
 
-/* constructeur */
+/**
+ * @brief Construct a new Matrice< T>:: Matrice object
+ * 
+ * @tparam T Type de donnée contenu dans la matrice
+ * @param nb_lignes Nombre de lignes de la matrice
+ * @param nb_colonnes Nombre de colonnes de la matrice
+ */
 template <typename T>
 Matrice<T>::Matrice(size_t nb_lignes, size_t nb_colonnes) {
     /* redimensionnement de la matrice */
@@ -35,9 +40,10 @@ Matrice<T>::Matrice(size_t nb_lignes, size_t nb_colonnes) {
         matrice[i].resize(nb_colonnes);
     }
 
+    /* entrée des valeurs de la matrice */
     for (size_t i = 0; i < nb_lignes; ++i) {
         for (size_t j = 0; j < nb_colonnes; ++j) {
-            cout << "Introduisez l'element en " << i << "X" << j << endl;
+            cout << "Introduisez l'element en " << i+1 << "X" << j+1 << endl;
             cin >> matrice.at(i).at(j);
         }
     }
@@ -103,6 +109,7 @@ int main() {
 
     /* création de la matrice */
     Matrice<Rationnel> matrice(nb_lignes, nb_colonnes);
+
     cout << "Avant pivot : " << endl;
     matrice.afficher(nb_lignes, nb_colonnes);
 
@@ -110,6 +117,7 @@ int main() {
     for (size_t i = 0; i < nb_lignes; ++i) {
         matrice.pivot(i, i, nb_lignes, nb_colonnes);
     }
+
     cout << "Apres pivot : " << endl;
     matrice.afficher(nb_lignes, nb_colonnes);
 }

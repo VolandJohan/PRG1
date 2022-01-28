@@ -4,12 +4,14 @@
 using Uint = uintmax_t;
 
 class Rationnel {
- private :
-    bool negatif;
-    Uint numerateur;
-    Uint denominateur;
+   bool negatif;
+   Uint numerateur;
+   Uint denominateur;
 
-    void pgdc();
+   void pgdc();
+
+   /* gestion des erreurs */   
+   void tester_denominateur ();
  public :
     /* constructeurs */
     Rationnel();

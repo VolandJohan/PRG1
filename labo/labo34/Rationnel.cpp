@@ -1,43 +1,89 @@
 #include "Rationnel.hpp"
 #include <sstream>
+#include <iostream>
+#include <exception>
 
 using Uint = uintmax_t;
 
+/* fonctions gérant les erreurs */
+/**
+ * @brief Vérifie que le dénominateur n'est pas égal à 0
+ * 
+ */
+void Rationnel::tester_denominateur() {
+    try {
+        if (denominateur == 0) {
+            throw std::logic_error("Le denominateur ne peut pas etre 0.");
+        }
+    } catch (std::exception& e) {
+        std::cerr << e.what() << std::endl;
+        abort();
+    }
+}
+
 /* constructeurs */
+/**
+ * @brief Construit un nouveau rationnel. Version où rien n'est entré.
+ * 
+ */
 Rationnel::Rationnel() {
     negatif = false;
     numerateur = Uint(0);
-    denominateur = Uint(0);
+    denominateur = Uint(1);
 }
+/**
+ * @brief Construit un nouveau rationnel. Version où juste un nombre est entré.
+ * 
+ * @param num : juste le numérateur est entré
+ */
 Rationnel::Rationnel(const Uint &num) {
     negatif = false;
     numerateur = num;
     denominateur = Uint(1);
 }
+/**
+ * @brief Construit un nouveau rationnel. Version avec le numérateur et dénominateur entrés.
+ * 
+ * @param num : numérateur entré
+ * @param denom : dénominateur entré
+ */
 Rationnel::Rationnel(const Uint &num, const Uint &denom) {
     negatif = false;
     numerateur = num;
     denominateur = denom;
 
-    // diviser les valeurs pour éviter d'avoir des valeurs trop grandes
+    tester_denominateur();
     pgdc();
 }
+/**
+ * @brief Construit un nouveau rationnel. Version avec les 3 paramètres entrés.
+ * 
+ * @param num : numérateur entré
+ * @param denom : dénominateur entré
+ * @param neg : le signe est indiqué
+ */
 Rationnel::Rationnel(const Uint &num, const Uint &denom, const bool &neg) {
     negatif = neg;
     numerateur = num;
     denominateur = denom;
 
-    // diviser les valeurs pour éviter d'avoir des valeurs trop grandes
+    tester_denominateur();
     pgdc();
 }
 
 /* opérateurs arithmétiques */
+/**
+ * @brief Opérateur permettant d'additionner un rationnel
+ * 
+ * @param right : valeur à addionner avec le rationnel
+ * @return Rationnel : résultat du calcul
+ */
 Rationnel Rationnel::operator+=(const Rationnel& right) {
     Uint num_temp = right.numerateur;
     Uint denom_temp = right.denominateur;
     bool neg_temp = right.negatif;
 
-    /* test du dénominateur */
+    /* test que les dénominateurs sont égaux */
     if (denominateur != denom_temp) {
         // multiplier les numérateurs avec les dénominateurs
         numerateur *= denom_temp;
@@ -52,7 +98,7 @@ Rationnel Rationnel::operator+=(const Rationnel& right) {
         if (numerateur < num_temp) {
             negatif = !(negatif);
             numerateur = num_temp - numerateur;
-        } else {
+        } else {    // si numerateur > num_temp
             numerateur -= num_temp;
         }
     } else { // si les signes sont identiques, on fait une simple addition
@@ -63,12 +109,18 @@ Rationnel Rationnel::operator+=(const Rationnel& right) {
     return *this;
 }
 
+/**
+ * @brief Opérateur permettant de soustraire un rationnel
+ * 
+ * @param right : Valeur à soustraire avec le rationnel
+ * @return Rationnel : Résultat du calcul
+ */
 Rationnel Rationnel::operator-=( const Rationnel& right) {
     Uint num_temp = right.numerateur;
     Uint denom_temp = right.denominateur;
     bool neg_temp = right.negatif;
     
-    /* test du dénominateur */
+    /* test que les dénominateurs sont égaux */
     if (denominateur != denom_temp) {
         // multiplier les numérateurs avec les dénominateurs
         numerateur *= denom_temp;
@@ -77,48 +129,60 @@ Rationnel Rationnel::operator-=( const Rationnel& right) {
         denominateur *= denom_temp;
     }
 
-    /* calculs en fonction de qui est négatif */
-
+    /* calculs en fonction de quel nombre est supérieur et le signe */
     if (numerateur > num_temp) {
-        if (negatif == false && neg_temp == false || negatif == true && neg_temp == true) {
+        if ((negatif == false && neg_temp == false) || (negatif == true && neg_temp == true)) {
             numerateur -= num_temp;
         } else {
             numerateur += num_temp;
         }
     } else if (numerateur < num_temp) {
-        if (negatif == false && neg_temp == false || negatif == true && neg_temp == true) {
+        if ((negatif == false && neg_temp == false) || (negatif == true && neg_temp == true)) {
             numerateur = num_temp - numerateur;
             negatif = !(negatif);
         } else {
             numerateur += num_temp;
         }
-    } else {
+    } else {    // si les numérateurs sont égaux
         negatif = false;
         numerateur = 0;
-        denominateur = 0;
+        denominateur = 1;
     }
 
     pgdc();
     return *this;
 }
 
+/**
+ * @brief Opérateur permettant de multiplier un rationnel
+ * 
+ * @param right : valeur à multiplier par le rationnel
+ * @return Rationnel : résultat du calcul
+ */
 Rationnel Rationnel::operator*=(const Rationnel& right) {
     numerateur *= right.numerateur;
     denominateur *= right.denominateur;
+
     // gestion du signe
     if (negatif && right.negatif) {
         negatif = false;
     } else if (right.negatif) {
         negatif = true;
     }
+
     pgdc();
     return *this;
 }
 
+/**
+ * @brief Opérateur permettant de diviser un rationnel
+ * 
+ * @param right : valeur à diviser par le rationnel
+ * @return Rationnel : résultat du calcul
+ */
 Rationnel Rationnel::operator/=(const Rationnel& right) {
     Uint num_temp = right.denominateur;
     Uint denom_temp = right.numerateur;
-    bool neg_temp = right.negatif;
 
     numerateur *= num_temp;
     denominateur *= denom_temp;
@@ -139,27 +203,52 @@ Rationnel operator-(Rationnel left, const Rationnel& right) { return left -= rig
 Rationnel operator*(Rationnel left, const Rationnel& right) { return left *= right; }
 Rationnel operator/(Rationnel left, const Rationnel& right) { return left /= right; }
 
+/**
+ * @brief Opérateur permettant d'effectuer -rationnel
+ * 
+ * @return Rationnel : résultat
+ */
 Rationnel Rationnel::operator-() {
     negatif = !(negatif);
     return *this;
 }
 
 /* opérateurs d'incrémentation */
+/**
+ * @brief Opérateur ++ préfixe
+ * 
+ * @return Rationnel& : résultat du calcul
+ */
 Rationnel &Rationnel::operator++() {
     Rationnel temp(1, 1);
     *this += temp;
     return *this;
 }
+/**
+ * @brief Opérateur ++ postfixe
+ * 
+ * @return Rationnel : résultat du calcul
+ */
 Rationnel Rationnel::operator++(int) {
     Rationnel temp = *this;
     ++temp;
     return temp;
 }
+/**
+ * @brief Opérateur -- préfixe
+ * 
+ * @return Rationnel& : résultat du calcul
+ */
 Rationnel &Rationnel::operator--() {
     Rationnel temp(1, 1);
     *this -= temp;
     return *this;
 }
+/**
+ * @brief Opérateur -- postfixe
+ * 
+ * @return Rationnel : résultat du calcul
+ */
 Rationnel Rationnel::operator--(int) {
     Rationnel temp = *this;
     --temp;
@@ -211,6 +300,13 @@ bool operator!=(const Rationnel& left, const Rationnel& right) {
 }
 
 /* opérateurs de lecture/écriture */
+/**
+ * @brief Opérateur permettant de lire un rationnel
+ * 
+ * @param os : variable pour la lecture
+ * @param val : rationnel à lire
+ * @return std::ostream& : résultat de la lecture
+ */
 std::ostream& operator<<(std::ostream& os, const Rationnel& val) {
     if (val.negatif) {
         os << '-';
@@ -218,8 +314,30 @@ std::ostream& operator<<(std::ostream& os, const Rationnel& val) {
     os << val.numerateur << '/' << val.denominateur;
     return os;
 }
+/**
+ * @brief Opérateur permettant d'écrire un rationnel
+ * 
+ * @param is : variable pour la l'écriture
+ * @param val : rationnel à écrire
+ * @return std::istream& : résultat de l'écriture
+ */
 std::istream& operator>>(std::istream& is, Rationnel& val) {
+    std::cout << "Pour entrer un rationnel, suivez ce format : [numerateur] [denominateur] [true/1 = nbre negatif, false/0 = nbre positif]" << std::endl;
     is >> val.numerateur >> val.denominateur >> val.negatif;
+
+    /* gestion des erreurs */
+    try {
+        if (val.denominateur == 0) {
+            throw std::logic_error("Le denominateur ne peut pas etre 0.");
+        }
+        if (!(is)) {    // si on entre autre chose qu'un nombre (booléen pour le signe)
+            throw std::invalid_argument("Il faut entrer un caractere valide.");
+        }
+    } catch (std::exception& e) {
+        std::cerr << e.what() << std::endl;
+        abort();
+    }
+
     val.pgdc();
     return is;
 }

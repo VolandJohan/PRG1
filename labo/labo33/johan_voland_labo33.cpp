@@ -107,6 +107,6 @@ int main() {
     for (size_t i = 0; i < nb_lignes; ++i) {
         matrice.pivot(i, i, nb_lignes, nb_colonnes);
     }
-    /*cout << "Apres pivot : " << endl;
-    matrice.afficher(nb_lignes, nb_colonnes);*/
+    cout << "Apres pivot : " << endl;
+    matrice.afficher(nb_lignes, nb_colonnes);
 }
