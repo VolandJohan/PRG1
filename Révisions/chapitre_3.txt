@@ -1,0 +1,71 @@
+***** Ex3.6 Evaluation d'expressions *****
+A : i = 3 j = 2 k = 1
+B : i = 4 j = 3 k = 1
+C : i = 4 j = 3 k = 1 (fait gafe le ++ est post-fixé)
+D : i = 4 j = 2 (/!\ l'intruction à dû être arrêtée) k = 0
+E : i = 4 j = 3 k = 1
+
+***** Ex3.14 Instruction switch (2) *****
+1.	Donnez un entier : 0
+	A
+	B
+
+2.	Donnez un entier : 1
+	B
+
+3.	Donnez un entier : 4
+	C
+	D	/!\ tant qu'il n'y a pas de break on continue
+	
+4.	Donnez un entier : 6
+	D
+	
+5.	Donnez un entier : -1
+	D
+
+***** Ex3.17 Boucle while (1) *****
+1.	2 4 6 8 10
+2.	10
+3.	2 4 6 8 10 12
+4.	10 8 6 4 2 0 -2 -4 ... /!\ bien regarder quand le test se fait
+5.	10 8 6 4 2 0
+6.	1 1 1 1 1 ...
+7.	2 4 6 8 10 /!\ le i n'est pas modifié par le *2 mais juste le ++
+8.	3 5 7 9
+
+***** Ex3.18 Boucle while (2) *****
+A : i = 5
+B : i = 6 j = 4 /!\ on applique le j puis on l'augmente
+C : i = 6 j = 3
+D : i = 15 j = 6
+E : i = 21 j = 6
+F : i = 6 j = 1
+
+***** Ex3.21 Boucles for (1) *****
+1.	1 2 3 4 5 6 7 8 9
+2.	1 3 5 7 9
+3.	10 9 8 7 6 5 4 3 2
+4.	0 1 2 3 4 5 6 7 8 9
+5.	1 2 4 8
+6.	2 4 6 8
+
+***** Ex3.22 Boucles for (2) *****
+1.	10
+2.	10
+3.	10
+4.	21
+5.	boucle infinie ~ (s'arrête lorsque la valeur max de int est atteinte)
+6.	11
+7.	7
+
+***** Ex3.23 Boucles for (3) *****
+1.	2 4 7 11 16
+2.	4 9 16 25 36
+3.	10 7
+
+***** Ex3.31 continue et break dans boucle do... while *****
+0 est pair
+3 est multiple de 3
+9 est multiple de 3
+15 est multiple de 3
+20 est multiple de 5

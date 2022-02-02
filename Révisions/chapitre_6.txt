@@ -1,0 +1,28 @@
+***** Ex6.2 Constructeurs *****
+1.	|BC|
+2.	|C|
+3.	|| /!\ même si c'est en dehors ça passe vu que l'on part depuis le tableau
+4.	erreur à la compilation, on en compètement en dehors du tableau
+5.	|ABC|
+6.	|ABC|
+7.	erreur
+8.	|AAA|
+
+***** Ex6.3 assign, '+', '+=' et append *****
+1.	|C|
+2.	||
+3.	|AB|
+4.	|AA| /!\ hexadécimal
+5.	|AAAA| /!\ hexadécimal
+6.	|BBBB|
+7.	|ABC|
+8.	|ABC|
+9.	|ABC|
+10.	erreur à la compilation /!\ deux chaîne au pif ça marche pas
+11.	|ABC|
+12.	|123|
+13.	|23|
+14.	|12|
+15.	|22|
+
+***** Ex6.6 [], at, length, size, resize et substr *****

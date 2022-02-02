@@ -21,4 +21,9 @@ B : i = 1 k = 2
 C : i = 3 j = 4 k = 8 /!\ le * s'applique en premier suivi du ++j puis enfin de ++i
 D : i = 9 j = 3 k = 9
 
-***** Ex2.9 Conversions implicites *****
+***** Ex2.10 Evaluations d'expressions (3) *****
+1.	2.2
+2.	2.0
+3.	2.5
+4.	2.7
+5.	2.0

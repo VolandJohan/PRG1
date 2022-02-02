@@ -8,13 +8,12 @@
  * @copyright Copyright (c) 2022
  * 
  */
+#include <cstdlib>
 #include <iostream>
+#include <string>
 using namespace std;
-
-int main()
-{
-    int i, j, k;
-    i = 2; j = 3;
-    k = i++ * ++j;
-    cout << "C : i = " << i << " j = " << j << " k = " << k << endl;
+int main() {
+    string s1 = "ABC"; 
+    string s2(s1, 1); 
+    cout << '|' << s2 << '|' << endl;
 }

@@ -1,0 +1,18 @@
+***** Ex4.14 Surcharge (1) *****
+1.	fonction II bool -> int
+2.	fonction I correspondance exacte
+3.	fonction II short -> int
+4.	fonction II correspondance exacte
+5.	fonction III correspondance exacte
+6.	ambigu, les 3 fonctions fonctionneraient
+
+***** Ex4.15 Surcharge (2) *****
+1.	ambigu
+2.	ambigu
+3.	ambigu
+4.	fonction II char -> int
+5.	fonction I char -> int
+6. 	ambigu
+7.	fonction I double -> float
+6.	fonction II double -> float
+9.	ambigu
