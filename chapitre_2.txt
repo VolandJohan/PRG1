@@ -1,0 +1,24 @@
+***** Ex2.1 Identificateurs C++ *****
+1.	Non, on ne peut pas commencer par un 0
+2.	Oui
+3.	Oui
+4.	Non, on ne peut pas mettre d'espace
+5.	Oui
+6.	Oui
+7.	/!\ Non, on peut commencer par un _ mais on ne peut pas enchainer avec que des nombres
+8.	Oui
+9.	Oui
+10.	Non, on ne peut pas avoir de "-"
+11.	Non, on ne peut pas avoir de caractère spécial ("&")
+12.	Non, ce caractère est réservé
+13.	Oui
+14.	Non, on ne peut pas avoir de caractère spécial ("é")
+15.	Oui
+
+***** Ex2.6 Evaluations d'expressions (1) *****
+A : i = 1(le ++ s'applique) k = 1
+B : i = 1 k = 2
+C : i = 3 j = 4 k = 8 /!\ le * s'applique en premier suivi du ++j puis enfin de ++i
+D : i = 9 j = 3 k = 9
+
+***** Ex2.9 Conversions implicites *****
